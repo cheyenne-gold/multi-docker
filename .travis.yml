@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t cheyenne-gold/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t cheyennegold/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true cheyenne-gold/react-test npm test
+  - docker run -e CI=true cheyennegold/react-test npm test
 
 after_success:
-  - docker build -t cheyenne-gold/multi-client ./client
-  - docker build -t cheyenne-gold/multi-nginx ./nginx
-  - docker build -t cheyenne-gold/multi-server ./server
-  - docker build -t cheyenne-gold/multi-worker ./worker
+  - docker build -t cheyennegold/multi-client ./client
+  - docker build -t cheyennegold/multi-nginx ./nginx
+  - docker build -t cheyennegold/multi-server ./server
+  - docker build -t cheyennegold/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push cheyenne-gold/multi-client
-  - docker push cheyenne-gold/multi-nginx
-  - docker push cheyenne-gold/multi-server
-  - docker push cheyenne-gold/multi-worker
+  - docker push cheyennegold/multi-client
+  - docker push cheyennegold/multi-nginx
+  - docker push cheyennegold/multi-server
+  - docker push cheyennegold/multi-worker
